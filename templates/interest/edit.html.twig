@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Interest{% endblock %}
+
+{% block body %}
+    <h1>Edit Interest</h1>
+
+    {{ include('interest/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('interest_index') }}">back to list</a>
+
+    {{ include('interest/_delete_form.html.twig') }}
+{% endblock %}

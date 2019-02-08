@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interest index{% endblock %}
+
+{% block body %}
+    <h1>Interest index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Product_name</th>
+                <th>Product_url</th>
+                <th>Selector_type</th>
+                <th>Selector</th>
+                <th>Notify_email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for interest in interests %}
+            <tr>
+                <td>{{ interest.id }}</td>
+                <td>{{ interest.productName }}</td>
+                <td>{{ interest.productUrl }}</td>
+                <td>{{ interest.selectorType }}</td>
+                <td>{{ interest.selector }}</td>
+                <td>{{ interest.notifyEmail }}</td>
+                <td>
+                    <a href="{{ path('interest_show', {'id': interest.id}) }}">show</a>
+                    <a href="{{ path('interest_edit', {'id': interest.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('interest_new') }}">Create new</a>
+{% endblock %}
