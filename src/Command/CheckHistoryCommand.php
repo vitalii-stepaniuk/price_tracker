@@ -8,6 +8,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use GuzzleHttp\Client;
+
+
 
 class CheckHistoryCommand extends Command
 {
@@ -25,15 +28,13 @@ class CheckHistoryCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-//        $arg1 = $input->getArgument('arg1');
 
-        // if ($arg1) {
-        //     $io->note(sprintf('You passed an argument: %s', $arg1));
-        // }
+        $client = new Client();
+        $response = $client->get('https://www.flagman.kiev.ua');
+        $content = $response->getBody()->getContents();
+        var_dump($content);
+        die(333);
 
-        // if ($input->getOption('option1')) {
-        //     // ...
-        // }
 
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
     }
